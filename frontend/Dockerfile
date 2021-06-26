@@ -14,4 +14,4 @@ COPY . .
 
 EXPOSE 8080
 
-CMD [ "node", "/scripts/start.js" ]
+CMD [ "node", "./scripts/start.js" ]
