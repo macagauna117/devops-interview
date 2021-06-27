@@ -1,4 +1,4 @@
-FROM node:14
+FROM node:12-alpine
 
 # Create app directory
 WORKDIR /front
@@ -11,7 +11,5 @@ COPY package*.json ./
 RUN npm install
 
 COPY . .
-
-EXPOSE 8080
 
 CMD [ "node", "./scripts/start.js" ]
