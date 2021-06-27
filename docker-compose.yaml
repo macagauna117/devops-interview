@@ -1,0 +1,40 @@
+version: '3'
+   
+services:
+  db:
+    image: postgres:12.0-alpine
+    # volumes:
+    #     - postgres_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    networks: 
+      - applicationnet
+  
+  backend:
+    build: ./backend
+    restart: always
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    environment: 
+      # - DJANGO_SETTINGS_MODULE=backend.settings
+      - SECRET_KEY=i@%!#v+@=^^e7960-)1$$)czkkb6un9np)n07j8i*pvj&rj_fdv
+    networks:
+      - applicationnet
+  
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    networks:
+      - applicationnet
+
+# volumes:
+#     postgres_data:
+networks:
+    applicationnet:
+        
+
